@@ -5,16 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A Promise to Awelewa</title>
     <link rel="icon" href="https://img.icons8.com/ios-filled/50/d4af37/like.png" type="image/png">
-    
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400&family=Great+Vibes&display=swap" rel="stylesheet">
-    
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     
     <style>
         :root {
             --gold: #d4af37;
             --royal-black: #1a1a1a;
-            --deep-red: #4a0404;
         }
 
         body, html {
@@ -38,78 +35,44 @@
             text-align: center;
             padding: 60px 40px;
             border: 1px solid rgba(212, 175, 55, 0.3);
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.75);
             backdrop-filter: blur(20px);
-            border-radius: 10px;
-            max-width: 550px;
+            border-radius: 15px;
+            max-width: 500px;
             width: 85%;
             box-shadow: 0 0 60px rgba(0,0,0,0.9);
-            animation: slideUp 2s ease-out;
+            animation: slideUp 1.5s ease-out;
         }
 
-        h1 {
-            font-family: 'Great Vibes', cursive;
-            font-size: 4rem;
-            color: var(--gold);
-            margin: 0;
-            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
-        }
+        h1 { font-family: 'Great Vibes', cursive; font-size: 4rem; color: var(--gold); margin: 0; }
+        .subtitle { font-family: 'Cinzel', serif; text-transform: uppercase; letter-spacing: 4px; font-size: 0.8rem; color: #aaa; margin-bottom: 30px; }
+        .content-text { font-size: 1.1rem; line-height: 1.8; font-weight: 300; margin-bottom: 40px; color: #d0d0d0; }
 
-        .subtitle {
-            font-family: 'Cinzel', serif;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            font-size: 0.8rem;
-            color: #aaa;
-            margin-bottom: 30px;
-        }
-
-        .content-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            font-weight: 300;
-            margin-bottom: 40px;
-            color: #d0d0d0;
-        }
-
-        .btn-container {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-        }
-
+        .btn-group { display: flex; justify-content: center; gap: 20px; }
         .btn {
-            background: transparent;
-            border: 1px solid var(--gold);
-            color: var(--gold);
-            padding: 14px 45px;
-            font-family: 'Cinzel', serif;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            background: transparent; border: 1px solid var(--gold); color: var(--gold);
+            padding: 14px 40px; font-family: 'Cinzel', serif; font-size: 0.9rem;
+            cursor: pointer; transition: all 0.4s ease; text-transform: uppercase; letter-spacing: 2px;
         }
 
-        .btn:hover {
-            background: var(--gold);
-            color: var(--royal-black);
-            box-shadow: 0 0 25px rgba(212, 175, 55, 0.6);
-            transform: translateY(-3px);
+        .btn:hover { background: var(--gold); color: var(--royal-black); box-shadow: 0 0 20px rgba(212, 175, 55, 0.5); }
+
+        /* The WhatsApp Success Button */
+        #whatsappBtn {
+            display: none;
+            background-color: #25D366;
+            color: white;
+            border: none;
+            margin-top: 20px;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            animation: fadeIn 1s ease;
         }
 
-        #noBtn:hover {
-            border-color: #666;
-            color: #666;
-            background: transparent;
-            box-shadow: none;
-            transform: none;
-        }
-
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(60px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
@@ -117,64 +80,63 @@
     <div class="bg-overlay"></div>
 
     <div class="main-card">
-        <p class="subtitle">A sincere question for</p>
+        <p class="subtitle">A Request for</p>
         <h1 id="headline">Awelewa</h1>
         
         <div class="content-text" id="textBody">
-            Every moment we spend together feels like a scene from a beautiful story. 
-            I want to build a life where you aren't just a part of my journey, but the heart of it. 
+            Every moment since Valentine's has been a dream. 
+            I want to make it official and build our future together. 
             <br><br>
             <strong>Will you be my girlfriend?</strong>
         </div>
 
-        <div class="btn-container" id="controls">
+        <div class="btn-group" id="controls">
             <button class="btn" id="yesBtn">Yes</button>
             <button class="btn" id="noBtn">No</button>
         </div>
+
+        <a href="https://wa.me/2347063628656?text=Yes%20Oladimeji!%20I%20would%20love%20to%20be%20your%20girlfriend!%20❤️" 
+           id="whatsappBtn" class="btn">
+           Message me on WhatsApp 📱
+        </a>
     </div>
 
     <script>
         const yesBtn = document.getElementById('yesBtn');
         const noBtn = document.getElementById('noBtn');
+        const whatsappBtn = document.getElementById('whatsappBtn');
         const headline = document.getElementById('headline');
         const textBody = document.getElementById('textBody');
         const controls = document.getElementById('controls');
 
         const FORMSPREE_ID = 'xeerqjog'; 
 
-        // Celebrate and Notify
         yesBtn.addEventListener('click', () => {
-            // Send Notification to you
+            // 1. Silent Notification
             fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ 
-                    status: "Awelewa said YES!", 
-                    message: "She clicked Yes on your proposal site.",
-                    timestamp: new Date().toLocaleString()
-                })
+                body: JSON.stringify({ status: "Awelewa said YES!" })
             });
 
-            // Dual Gold Confetti Explosion
-            const duration = 6 * 1000;
-            const end = Date.now() + duration;
-
+            // 2. Gold Confetti
+            const end = Date.now() + (5 * 1000);
             (function frame() {
               confetti({ particleCount: 3, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#d4af37', '#ffffff'] });
               confetti({ particleCount: 3, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#d4af37', '#ffffff'] });
               if (Date.now() < end) requestAnimationFrame(frame);
             }());
 
-            // UI Transformation
-            headline.innerHTML = "Always Yours";
-            textBody.innerHTML = "I am honored and happy to call you mine. Here's to us, Obim. ❤️";
+            // 3. Reveal WhatsApp Button
+            headline.innerHTML = "Success! ❤️";
+            textBody.innerHTML = "I am so happy, Obim. Click below to tell me yourself!";
             controls.style.display = 'none';
+            whatsappBtn.style.display = 'inline-block';
         });
 
-        // Respectful No
         noBtn.addEventListener('click', () => {
             headline.innerHTML = "I Respect You";
-            textBody.innerHTML = "My feelings for you remain unchanged, Awelewa. I'll always value what we have.";
+            textBody.innerHTML = "My feelings for you remain the same, Awelewa.";
             controls.style.display = 'none';
         });
     </script>
