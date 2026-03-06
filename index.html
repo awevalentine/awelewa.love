@@ -4,34 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A Promise to Awelewa</title>
+    <link rel="icon" href="https://img.icons8.com/ios-filled/50/d4af37/like.png" type="image/png">
+    
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400&family=Great+Vibes&display=swap" rel="stylesheet">
+    
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     
     <style>
         :root {
             --gold: #d4af37;
-            --deep-burgundy: #4a0404;
             --royal-black: #1a1a1a;
+            --deep-red: #4a0404;
         }
 
         body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
+            margin: 0; padding: 0; height: 100%;
             font-family: 'Montserrat', sans-serif;
             background-color: var(--royal-black);
             color: white;
             overflow: hidden;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            align-items: center; justify-content: center;
         }
 
-        /* Animated Cinematic Background */
         .bg-overlay {
             position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             background: radial-gradient(circle at center, #630d0d 0%, #1a1a1a 100%);
             z-index: -1;
         }
@@ -40,30 +38,30 @@
             text-align: center;
             padding: 60px 40px;
             border: 1px solid rgba(212, 175, 55, 0.3);
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(15px);
-            border-radius: 5px;
-            max-width: 600px;
-            width: 90%;
-            box-shadow: 0 0 50px rgba(0,0,0,0.8);
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(20px);
+            border-radius: 10px;
+            max-width: 550px;
+            width: 85%;
+            box-shadow: 0 0 60px rgba(0,0,0,0.9);
             animation: slideUp 2s ease-out;
         }
 
         h1 {
             font-family: 'Great Vibes', cursive;
-            font-size: 4.5rem;
+            font-size: 4rem;
             color: var(--gold);
             margin: 0;
-            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
         }
 
         .subtitle {
             font-family: 'Cinzel', serif;
             text-transform: uppercase;
-            letter-spacing: 5px;
-            font-size: 0.9rem;
-            color: #ccc;
-            margin-bottom: 40px;
+            letter-spacing: 4px;
+            font-size: 0.8rem;
+            color: #aaa;
+            margin-bottom: 30px;
         }
 
         .content-text {
@@ -71,24 +69,24 @@
             line-height: 1.8;
             font-weight: 300;
             margin-bottom: 40px;
-            color: #e0e0e0;
+            color: #d0d0d0;
         }
 
         .btn-container {
             display: flex;
             justify-content: center;
-            gap: 30px;
+            gap: 25px;
         }
 
         .btn {
             background: transparent;
             border: 1px solid var(--gold);
             color: var(--gold);
-            padding: 15px 40px;
+            padding: 14px 45px;
             font-family: 'Cinzel', serif;
             font-size: 1rem;
             cursor: pointer;
-            transition: all 0.4s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             text-transform: uppercase;
             letter-spacing: 2px;
         }
@@ -96,41 +94,35 @@
         .btn:hover {
             background: var(--gold);
             color: var(--royal-black);
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.6);
+            transform: translateY(-3px);
         }
 
         #noBtn:hover {
-            border-color: #777;
-            color: #777;
+            border-color: #666;
+            color: #666;
             background: transparent;
             box-shadow: none;
+            transform: none;
         }
 
         @keyframes slideUp {
-            from { opacity: 0; transform: translateY(50px); }
+            from { opacity: 0; transform: translateY(60px); }
             to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Gold Dust Particles */
-        .particles {
-            position: absolute;
-            width: 100%; height: 100%;
-            pointer-events: none;
         }
     </style>
 </head>
 <body>
 
     <div class="bg-overlay"></div>
-    <div class="particles" id="particles"></div>
 
-    <div class="main-card" id="card">
-        <p class="subtitle">A Request for my</p>
+    <div class="main-card">
+        <p class="subtitle">A sincere question for</p>
         <h1 id="headline">Awelewa</h1>
         
         <div class="content-text" id="textBody">
-            You are the quiet strength in my days and the gold in my horizon. 
-            I want to build a life where you aren't just a part of it, but the heart of it. 
+            Every moment we spend together feels like a scene from a beautiful story. 
+            I want to build a life where you aren't just a part of my journey, but the heart of it. 
             <br><br>
             <strong>Will you be my girlfriend?</strong>
         </div>
@@ -148,38 +140,41 @@
         const textBody = document.getElementById('textBody');
         const controls = document.getElementById('controls');
 
-        // Elegant Gold Celebration
+        const FORMSPREE_ID = 'xeerqjog'; 
+
+        // Celebrate and Notify
         yesBtn.addEventListener('click', () => {
-            const duration = 5 * 1000;
-            const animationEnd = Date.now() + duration;
-            const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+            // Send Notification to you
+            fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    status: "Awelewa said YES!", 
+                    message: "She clicked Yes on your proposal site.",
+                    timestamp: new Date().toLocaleString()
+                })
+            });
 
-            function randomInRange(min, max) {
-              return Math.random() * (max - min) + min;
-            }
+            // Dual Gold Confetti Explosion
+            const duration = 6 * 1000;
+            const end = Date.now() + duration;
 
-            const interval = setInterval(function() {
-              const timeLeft = animationEnd - Date.now();
+            (function frame() {
+              confetti({ particleCount: 3, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#d4af37', '#ffffff'] });
+              confetti({ particleCount: 3, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#d4af37', '#ffffff'] });
+              if (Date.now() < end) requestAnimationFrame(frame);
+            }());
 
-              if (timeLeft <= 0) {
-                return clearInterval(interval);
-              }
-
-              const particleCount = 50 * (timeLeft / duration);
-              confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
-              confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
-            }, 250);
-
-            // Update UI to a "Final" State
+            // UI Transformation
             headline.innerHTML = "Always Yours";
-            textBody.innerHTML = "I am honored to call you mine. Here's to us, Obim. ❤️";
+            textBody.innerHTML = "I am honored and happy to call you mine. Here's to us, Obim. ❤️";
             controls.style.display = 'none';
         });
 
-        // Simple respect for the "No" button
+        // Respectful No
         noBtn.addEventListener('click', () => {
-            headline.innerHTML = "I Understand";
-            textBody.innerHTML = "My feelings remain the same, Awelewa. I'll always be here for you.";
+            headline.innerHTML = "I Respect You";
+            textBody.innerHTML = "My feelings for you remain unchanged, Awelewa. I'll always value what we have.";
             controls.style.display = 'none';
         });
     </script>
